@@ -52,9 +52,9 @@ important later on when we talk about how she books a car rental.
 
 ![](/images/authn-request.png)
 
-* Tip: I avoid abbreviations and acronyms in this guide, but you will commonly
-* see service provider abbreviated as SP, and identity providers abbreviated as
-* idP.
+*Tip: I avoid abbreviations and acronyms in this guide, but you will commonly
+see service provider abbreviated as SP, and identity providers abbreviated as
+idP.*
 
 > Alice types her username and password into https://idp.acme-corp.biz and is
 > redirected back to https://flights.acme-corp.biz/flights.
@@ -82,8 +82,8 @@ the site she wanted with a successful response.
 
 ![](/images/authn-request-subsequent.png)
 
-* Tip: Just like how an identity provider can be called a session authority, the
-* complement for service providers is to be called a **session participant**.
+*Tip: Just like how an identity provider can be called a session authority, the
+complement for service providers is to be called a **session participant**.*
 
 ## Bindings
 
@@ -166,9 +166,9 @@ redirect Alice to will be:
 http://idp.acme-corp.biz/sso?SAMLRequest=PD94bWwgdmVyc2lvbj0iMS4wIj8%2BCjxzYW1scDpBdXRoblJlcXVlc3QgeG1s%0AbnM6c2FtbHA9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpwcm90b2Nv%0AbCIgeG1sbnM6c2FtbD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFz%0Ac2VydGlvbiIgSUQ9Il9hYmNkZTEyMyIgSXNzdWVJbnN0YW50PSIyMDE0LTA5%0ALTE3VDIwOjUzOjIxIiBWZXJzaW9uPSIyLjAiPgo8L3NhbWxwOkF1dGhuUmVx%0AdWVzdD4%3D%0A
 ```
 
-* Tip: Be really careful about whitespace in your requests and responses. These
-* can wreak havoc on digital signatures and cause errors when validating
-* messages.
+*Tip: Be really careful about whitespace in your requests and responses. These
+can wreak havoc on digital signatures and cause errors when validating
+messages.*
 
 Alice sees the login page for the identity provider, types in the correct
 credentials, and establishes a session with the identity provider. The identity
@@ -197,9 +197,9 @@ will POST the encoded message back to
 https://flights.acme-corp.biz/saml/consume. The location was also defined in the
 metadata.
 
-* Tip: It's common to use the HTTP Post Binding for receiving SAML responses
-* because browsers have url length limits that don't work with with large
-* responses.
+*Tip: It's common to use the HTTP Post Binding for receiving SAML responses
+because browsers have url length limits that don't work with with large
+responses.*
 
 The Flights app sees that the authentication was successful from the
 `StatusCode` element, and can also learn more about the principal from the
