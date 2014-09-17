@@ -2,7 +2,8 @@
 
 Interested in adding SAML (Security Assertion Markup Language) support to your
 app? This post explains the basic single sign-on flows for web applications. If
-you have questions or feedback, please [file an issue](/issues).
+you have questions or feedback, please [file an
+issue](https://github.com/jch/saml/issues).
 
 ## Benefits
 
