@@ -228,4 +228,7 @@ guide:
 
 - [Firefox SAML Tracer plugin](https://addons.mozilla.org/en-US/firefox/addon/saml-tracer/): decode and view SAML messages
 - [SAML Developer Tools](https://www.samltool.com)
-- [schema-central]: http://www.datypic.com/sc/saml2/ss.html "XML schema reference for SAML messages"
+- [Schema Central][schema-central]: XML schema reference for SAML messages
+
+
+[schema-central]: http://www.datypic.com/sc/saml2/ss.html "XML schema reference for SAML messages"
