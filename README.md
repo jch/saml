@@ -221,6 +221,7 @@ The documentation is fantastic, but I recommend reading them in this order:
 These are interesting to skim, but work better as reference docs rather than a
 guide:
 
+- [Glossary](http://docs.oasis-open.org/security/saml/v2.0/saml-glossary-2.0-os.pdf)
 - [Metadata](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf)
 - [Bindings](http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf)
 
