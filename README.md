@@ -52,9 +52,9 @@ important later on when we talk about how she books a car rental.
 
 ![](/images/authn-request.png)
 
-*Tip: I avoid abbreviations and acronyms in this guide, but you will commonly
+<em>Tip: I avoid abbreviations and acronyms in this guide, but you will commonly
 see service provider abbreviated as SP, and identity providers abbreviated as
-idP.*
+idP.</em>
 
 > Alice types her username and password into https://idp.acme-corp.biz and is
 > redirected back to https://flights.acme-corp.biz/flights.
