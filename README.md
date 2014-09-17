@@ -136,9 +136,9 @@ know how to talk to us.
 
 ```xml
 <?xml version="1.0"?>
-<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="flights.acme-corp.biz">
-  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" AuthnRequestsSigned="false" WantAssertionsSigned="false">
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://flights.acme-corp.biz/saml/consume" isDefault="true" index="0"/>
+<md:EntityDescriptor entityID="flights.acme-corp.biz">
+  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://flights.acme-corp.biz/saml/consume" index="0"/>
   </md:SPSSODescriptor>
 </md:EntityDescriptor>
 ```
