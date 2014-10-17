@@ -11,8 +11,6 @@ Logging out of any application with single signed on sessions will send a logout
 request to the identity provider, who will terminiate the session and forward
 the logout request to all other service providers.
 
-![]() TODO: SP initiated SLO
-
 ## Identity provider initiated single logout
 
 Some SAML installations will have a web frontend for their identity provider to
@@ -22,19 +20,19 @@ provider rather than from a specific application. Service provider initiated
 single logout is required by the SAML 2.0 specification, but identity provider
 initiated logout is optional.
 
-![]() TODO: idP initiated SLO
-
 ## Basic example
+
+![](/images/idp-single-logout.png)
 
 Revisiting our single sign on example, Alice used single sign on to login to
 both service providers "Flights" and "Cars" via an identity provider at
 https://idp.acme-corp.biz. Suppose she clicks the logout link on the "Flights"
-application; This causes "Flights" to send the identity provider a
-`LogoutRequest`.
+application; After "Flights" terminates her session, it will send the identity
+provider a `LogoutRequest`.
 
 ```xml
 <?xml version="1.0"?>
-<samlp:LogoutRequest Destination="https://idp.acme.biz">
+<samlp:LogoutRequest Destination="https://idp.acme.biz" ID="logoutrequest1">
   <saml:NameID>alice@acme.biz</saml:NameID>
 </samlp:LogoutRequest>
 ```
@@ -53,19 +51,34 @@ application.
 
 ```xml
 <?xml version="1.0"?>
-<samlp:LogoutRequest Destination="https://cars.acme.biz">
+<samlp:LogoutRequest Destination="https://cars.acme.biz" ID="logoutrequest2">
   <saml:NameID>alice@acme.biz</saml:NameID>
 </samlp:LogoutRequest>
 ```
 
-TODO: cars will terminate session, send a LogoutResponse.
-
-Finally it'll terminate Alice's session and respond with a `LogoutResponse` message:
+If the LogoutRequest is valid, "Cars" will terminate Alice's session, and return
+a LogoutResponse back to the identity provider.
 
 ```xml
 <?xml version="1.0"?>
-<samlp:LogoutResponse>
+<samlp:LogoutResponse ID="logoutresponse1" InResponseTo="logoutrequest2">
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"></samlp:StatusCode>
+  </samlp:Status>
+</samlp:LogoutResponse>
+```
 
+Since the identity provider was able to logout of the other service providers,
+it can now send a successful logout response back to the original caller
+(Flights):
+
+```xml
+<!-- note the InResponseTo id matches the original request -->
+<?xml version="1.0"?>
+<samlp:LogoutResponse ID="logoutresponse2" InResponseTo="logoutrequest1">
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"></samlp:StatusCode>
+  </samlp:Status>
 </samlp:LogoutResponse>
 ```
 
@@ -80,6 +93,16 @@ technical perspective.
 - How do we logout of applications that only track sessions with domain cookies?
 
 TODO: explain SLO challenges
+
+
+```xml
+<?xml version="1.0"?>
+<samlp:LogoutResponse ID="logoutresponse2" InResponseTo="logoutrequest1">
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:PartialLogout"></samlp:StatusCode>
+  </samlp:Status>
+</samlp:LogoutResponse>
+```
 
 ## Further reading
 
