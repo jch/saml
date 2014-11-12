@@ -59,7 +59,7 @@ idP.</em>
 > Alice types her username and password into `https://idp.acme-corp.biz` and is
 > redirected back to `https://flights.acme-corp.biz/flights`.
 
-After the identity provider authentication successfully authenticates Alice, it
+After the identity provider successfully authenticates Alice, it
 sends a response back to the service provider saying authentication was
 successful, and releasing **assertions** about the principal. Assertions are
 statements about the principal. They typically include information like email,
