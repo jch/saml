@@ -82,7 +82,7 @@ the site she wanted with a successful response.
 
 ![](/images/authn-request-subsequent.png)
 
-<em>**Tip:** Just like how an identity provider can be called a session authority, the
+<em>**Tip:** Just as an identity provider can be called a session authority, the
 complement for service providers is to be called a **session participant**.</em>
 
 ## Bindings
