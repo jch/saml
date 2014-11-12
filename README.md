@@ -37,13 +37,13 @@ In SAML speak, Alice is our **principal**, the user that we're trying to
 authenticate and learn about. The two applications are the **service
 providers**.
 
-> She visits https://flights.acme-corp.biz/trips and is redirected to
-> https://idp.acme-corp.biz?SAMLRequest=... to single sign-on.
+> She visits `https://flights.acme-corp.biz/flights` and is redirected to
+> `https://idp.acme-corp.biz?SAMLRequest=...` to single sign-on.
 
 When the principal, Alice on her browser, tries to access a protected resource
-(/flights), the service provider (https://flights.acme-corp.biz) doesn't present
+(`/flights`), the service provider (`https://flights.acme-corp.biz`) doesn't present
 her with a login page. Instead, it redirects her to an **identity provider**
-(https://idp.acme-corp.biz) with an authentication request in the query
+(`https://idp.acme-corp.biz`) with an authentication request in the query
 parameter. The identity provider uses the authentication request to tell which
 service provider is making the request. Alice is now logged into the identity
 provider. In this context, we can also call the identity provider a **session
@@ -56,10 +56,10 @@ important later on when we talk about how she books a car rental.
 see service provider abbreviated as SP, and identity providers abbreviated as
 idP.</em>
 
-> Alice types her username and password into https://idp.acme-corp.biz and is
-> redirected back to https://flights.acme-corp.biz/flights.
+> Alice types her username and password into `https://idp.acme-corp.biz` and is
+> redirected back to `https://flights.acme-corp.biz/flights`.
 
-After the identity provider authentication successfully authenticates Alice, it
+After the identity provider successfully authenticates Alice, it
 sends a response back to the service provider saying authentication was
 successful, and releasing **assertions** about the principal. Assertions are
 statements about the principal. They typically include information like email,
@@ -74,7 +74,7 @@ a fancy term for "creating a new thing").
 
 Why didn't Alice need to re-authenticate? Remember that when she redirected to
 the identity provider for booking her flight, she established a session with the
-identity provider. When this other service provider (https://cars.acme-corp.biz)
+identity provider. When this other service provider (`https://cars.acme-corp.biz`)
 sent a authentication request, the identity provider saw that Alice had
 previously authenticated because of her active session. There's no need for
 Alice to re-authenticate again, so the identity provider redirects her back to
@@ -82,13 +82,13 @@ the site she wanted with a successful response.
 
 ![](/images/authn-request-subsequent.png)
 
-<em>**Tip:** Just like how an identity provider can be called a session authority, the
+<em>**Tip:** Just as an identity provider can be called a session authority, the
 complement for service providers is to be called a **session participant**.</em>
 
 ## Bindings
 
 In the single sign-on example, I glossed over how a user is "redirected" between
-the identity providers and service providers. In SAML, a **binding** is
+the identity providers and service providers. In SAML, a **binding**
 describes how messages should be encoded, and the underlying transport protocol
 to carry them. For web single sign-on, two common bindings are the "HTTP
 Redirect Binding" and the "HTTP Post Binding". Their names hint at their
@@ -194,7 +194,7 @@ the assertions about Alice:
 Again, this response is Base64 encoded, but since we're specified in our
 metadata to use HTTP Post binding for receiving messages, the identity provider
 will POST the encoded message back to
-https://flights.acme-corp.biz/saml/consume. The location was also defined in the
+`https://flights.acme-corp.biz/saml/consume`. The location was also defined in the
 metadata.
 
 <em>**Tip:** It's common to use the HTTP Post Binding for receiving SAML responses
