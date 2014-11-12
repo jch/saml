@@ -88,7 +88,7 @@ complement for service providers is to be called a **session participant**.</em>
 ## Bindings
 
 In the single sign-on example, I glossed over how a user is "redirected" between
-the identity providers and service providers. In SAML, a **binding** is
+the identity providers and service providers. In SAML, a **binding**
 describes how messages should be encoded, and the underlying transport protocol
 to carry them. For web single sign-on, two common bindings are the "HTTP
 Redirect Binding" and the "HTTP Post Binding". Their names hint at their
