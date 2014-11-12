@@ -37,7 +37,7 @@ In SAML speak, Alice is our **principal**, the user that we're trying to
 authenticate and learn about. The two applications are the **service
 providers**.
 
-> She visits https://flights.acme-corp.biz/trips and is redirected to
+> She visits https://flights.acme-corp.biz/flights and is redirected to
 > https://idp.acme-corp.biz?SAMLRequest=... to single sign-on.
 
 When the principal, Alice on her browser, tries to access a protected resource
