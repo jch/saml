@@ -22,6 +22,11 @@ tar xf shibboleth-identityprovider-2.4.2-bin.tar.gz
 cd shibboleth-identityprovider-2.4.2
 sudo ./install.sh
 ```
+
+## Define a new SP
+
+https://wiki.shibboleth.net/confluence/display/SHIB2/IdPMetadataProvider
+
 ## Add attributes
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute
