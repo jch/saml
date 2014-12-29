@@ -45,6 +45,18 @@ phone numbers. An attribute is defined by the following:
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverLDAPDataConnector
 
+```xml
+<!-- conf/attribute-resolver.xml -->
+<resolver:DataConnector xsi:type="LDAPDirectory" xmlns="urn:mace:shibboleth:2.0:resolver:dc"
+  id="myLDAP"
+  ldapURL="LDAP_URL"
+  baseDN="BASE_DN"
+  principal="LDAP_ADMIN_DN"
+  principalCredential="LDAP_ADMIN_PASSWORD"
+  lowercaseAttributeNames="true">
+</resolver:DataConnector>
+```
+
 ### Define attributes based on LDAP directory
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute#IdPAddAttribute-AttributeDefinition
