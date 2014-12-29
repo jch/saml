@@ -61,11 +61,70 @@ https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverLDAPDataConnector
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute#IdPAddAttribute-AttributeDefinition
 
-https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverSAML2NameIDAttributeDefinition
-https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverSimpleAttributeDefinition
-https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverMappedAttributeDefinition
+There are many different `AttributeDefinition` types; Below is an example of
+three common definitions.
 
-https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute#IdPAddAttribute-AttributeEncoding
+```xml
+<!--
+  Simple attribute definition:
+    https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverSimpleAttributeDefinition
+
+  This defines an attribute, `emails`, with no transformation from the data
+  connector (myLDAP). Values come from the LDAP attribute `mail`.
+
+  `id` - provides a way to reference this definition
+  `sourceAttributeID` - the name of the source attribute from resolver:Dependency. e.g. `mail` is the attribute returned by `myLDAP`.
+  `xsi:type="enc:SAML2String"` - encode this attribute as a string. Other encoders at https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute#IdPAddAttribute-AttributeEncoding
+  `name` - names the attribute to be released
+
+  Note that if the `sourceAttributeID` isn't defined, it's assumed to be the
+  same as the `id`. In this case, our LDAP instance's attribute name is
+  `mail`, but we want to name our shibboleth attribute `email`, so we define
+  both.
+-->
+<resolver:AttributeDefinition xsi:type="ad:Simple" id="emails" sourceAttributeID="mail">
+  <resolver:Dependency ref="myLDAP" />
+  <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="emails" />
+</resolver:AttributeDefinition>
+
+<!--
+  NameID attribute definition:
+    https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverSAML2NameIDAttributeDefinition
+    https://wiki.shibboleth.net/confluence/display/SHIB2/SAML2StringNameIDEncoder
+
+  This is similar to the simple attribute definition. The difference is the
+  value is encoded as a NameID, rather than a normal string.
+
+  `xsi:type="enc:SAML2StringNameID"` - encode this attribute value as a NameID
+-->
+<resolver:AttributeDefinition xsi:type="ad:Simple" id="NameID" sourceAttributeID="uid">
+  <resolver:Dependency ref="myLDAP" />
+  <resolver:AttributeEncoder xsi:type="enc:SAML2StringNameID" nameFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" />
+</resolver:AttributeDefinition>
+
+<!--
+  Mapped attribute definition:
+    https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverMappedAttributeDefinition
+
+  This attribute definition does more work by deriving the value to be released
+  based on the value retrieved from the data connector. Values retrieved from
+  `myLDAP`'s `cn` are matched against the `SourceValue` regex, `admin.*`. If
+  matched, the `ReturnValue`, `true`, becomes the attribute value; Otherwise,
+  the `DefaultValue` of `false` is returned.
+
+  Note that the order of the elements matter. `resolver:Dependency` must come
+  before the `ValueMap`.
+-->
+<resolver:AttributeDefinition xsi:type="ad:Mapped" xmlns="urn:mace:shibboleth:2.0:resolver:ad" id="administrator" sourceAttributeID="cn">
+  <resolver:Dependency ref="myLDAP" />
+  <resolver:AttributeEncoder xsi:type="SAML2String" xmlns="urn:mace:shibboleth:2.0:attribute:encoder" name="administrator" />
+  <DefaultValue>false</DefaultValue>
+  <ValueMap>
+    <ReturnValue>true</ReturnValue>
+    <SourceValue>admin.*</SourceValue>
+  </ValueMap>
+</resolver:AttributeDefinition>
+```
 
 ### Release attributes to SP
 
