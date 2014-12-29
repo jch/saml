@@ -16,6 +16,12 @@ this guide, you will be able to:
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPInstall
 
+```sh
+wget --no-verbose http://shibboleth.net/downloads/identity-provider/2.4.2/shibboleth-identityprovider-2.4.2-bin.tar.gz
+tar xf shibboleth-identityprovider-2.4.2-bin.tar.gz
+cd shibboleth-identityprovider-2.4.2
+sudo ./install.sh
+```
 ## Add attributes
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute
