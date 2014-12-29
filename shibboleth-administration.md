@@ -10,7 +10,7 @@ this guide, you will be able to:
   - Configure a connection to a LDAP backend
   - Define attributes based on LDAP directory
   - Release attributes to SP
-- Test attribute configuration from the command line
+- Troubleshoot attribute definitions
 
 ## Install Shibboleth idP
 
@@ -130,6 +130,43 @@ three common definitions.
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute#IdPAddAttribute-3.ReleasetheAttribute
 
-## Test attribute configuration from the command line
+```xml
+<!-- Release attributes to anyone -->
+<afp:AttributeFilterPolicy id="releaseEverythingToAnyone">
+  <afp:PolicyRequirementRule xsi:type="basic:ANY"/>
+  <afp:AttributeRule attributeID="NameID">
+    <afp:PermitValueRule xsi:type="basic:ANY"/>
+  </afp:AttributeRule>
+  <afp:AttributeRule attributeID="emails">
+    <afp:PermitValueRule xsi:type="basic:ANY" />
+  </afp:AttributeRule>
+  <afp:AttributeRule attributeID="administrator">
+    <afp:PermitValueRule xsi:type="basic:ANY" />
+  </afp:AttributeRule>
+</afp:AttributeFilterPolicy>
+```
 
-https://wiki.shibboleth.net/confluence/display/SHIB2/AACLI
+## Troubleshoot attribute definitions
+
+Use the [Attribute Authority, Command Line Interface
+(AACLI)](https://wiki.shibboleth.net/confluence/display/SHIB2/AACLI) to test
+whether attributes are properly configured.
+
+```sh
+$ bin/aacli.sh --configDir ./conf --principal admin1
+
+<?xml version="1.0" encoding="UTF-8"?><saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+  <saml2:Attribute FriendlyName="administrator" Name="administrator" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+    <saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">true</saml2:AttributeValue>
+  </saml2:Attribute>
+  <saml2:Attribute FriendlyName="emails" Name="emails" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+    <saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">admin1@openldap.ghe.local</saml2:AttributeValue>
+  </saml2:Attribute>
+</saml2:AttributeStatement>
+```
+
+Look at the [idP
+logs](https://wiki.shibboleth.net/confluence/display/SHIB2/IdPLogging) for
+syntax errors, connection errors to data connectors, whether attributes are
+being filtered out by attribute filter policies. `idp-process.log` is the most
+useful.
