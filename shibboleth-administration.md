@@ -31,6 +31,16 @@ https://wiki.shibboleth.net/confluence/display/SHIB2/IdPMetadataProvider
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute
 
+In SAML, the user being single signed-on is called the **principal**.
+Information about the principal is defined via Shibboleth idP **attributes**.
+For example, common attributes may include full names, emails, departments,
+phone numbers. An attribute is defined by the following:
+
+- **Data connector**: Connectors define where the raw information about principals are retrieved from. e.g. relational database, LDAP.
+- **Attribute definition**: Definitions give an attribute an ID for reference, and define optional data transformations.
+- **Attribute encoding**: Within a definition, this specifies how the value of an attribute should be encoded.
+- **Attribute filter policy**: This defines who (SP's) can access attributes, and under what conditions.
+
 ### Configure a connection to a LDAP backend
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverLDAPDataConnector
