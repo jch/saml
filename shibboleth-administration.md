@@ -128,7 +128,7 @@ three common definitions.
 
 ### Release attributes to SP
 
-https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttributeFilter
+https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute#IdPAddAttribute-3.ReleasetheAttribute
 
 ## Test attribute configuration from the command line
 
