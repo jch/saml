@@ -23,6 +23,9 @@ cd shibboleth-identityprovider-2.4.2
 sudo ./install.sh
 ```
 
+This directory will be the root of your shibboleth install. Configuration files
+will live under the `conf` directory by default.
+
 ## Define a new SP
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPMetadataProvider
