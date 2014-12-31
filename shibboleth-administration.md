@@ -65,6 +65,7 @@ There are many different `AttributeDefinition` types; Below is an example of
 three common definitions.
 
 ```xml
+<!-- conf/attribute-resolver.xml -->
 <!--
   Simple attribute definition:
     https://wiki.shibboleth.net/confluence/display/SHIB2/ResolverSimpleAttributeDefinition
@@ -131,6 +132,7 @@ three common definitions.
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPAddAttribute#IdPAddAttribute-3.ReleasetheAttribute
 
 ```xml
+<!-- conf/attribute-filter.xml -->
 <!-- Release attributes to anyone -->
 <afp:AttributeFilterPolicy id="releaseEverythingToAnyone">
   <afp:PolicyRequirementRule xsi:type="basic:ANY"/>
