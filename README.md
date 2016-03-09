@@ -191,9 +191,9 @@ the assertions about Alice:
 </samlp:Response>
 ```
 
-Again, this response is Base64 encoded, but since we're specified in our
+Again, this response is Base64 encoded. Since we've specified in our
 metadata to use HTTP Post binding for receiving messages, the identity provider
-will POST the encoded message back to
+will direct the principal to POST the encoded message back to
 `https://flights.acme-corp.biz/saml/consume`. The location was also defined in the
 metadata.
 
