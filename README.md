@@ -199,7 +199,10 @@ metadata.
 
 <em>**Tip:** It's common to use the HTTP Post Binding for receiving SAML responses
 because browsers have url length limits that don't work with with large
-responses.</em>
+responses. However, if the service provider sets a session cookies with a `SameSite=Lax`
+attribute, it will not be included in the POST request. Popular browsers
+are [increasingly](https://web.dev/samesite-cookies-explained/#changes-to-the-default-behavior-without-samesite)
+treating cookies without a `SameSite` attribute to be similar to `SameSite=Lax`.</em>
 
 The Flights app sees that the authentication was successful from the
 `StatusCode` element, and can also learn more about the principal from the
