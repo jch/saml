@@ -74,8 +74,8 @@ a fancy term for "creating a new thing").
 
 Why didn't Alice need to re-authenticate? Remember that when she redirected to
 the identity provider for booking her flight, she established a session with the
-identity provider. When this other service provider (`https://cars.acme-corp.biz`)
-sent a authentication request, the identity provider saw that Alice had
+identity provider. When the other service provider (`https://cars.acme-corp.biz`)
+sent an authentication request, the identity provider saw that Alice had been
 previously authenticated because of her active session. There's no need for
 Alice to re-authenticate again, so the identity provider redirects her back to
 the site she wanted with a successful response.
